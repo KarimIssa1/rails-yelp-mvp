@@ -1,10 +1,20 @@
-<h1>Available Restaurants</h1>
-<ul>
-  <% @restaurants.each do |restaurant| %>
-    <li>
-      <%= link_to restaurant.name, restaurant_path(restaurant) %>
-      - <%= restaurant.category %>
-    </li>
-  <% end %>
-</ul>
-<%= link_to 'Add New Restaurant', new_restaurant_path %>
+<!-- app/views/restaurants/index.html.erb -->
+<div class="container mt-4">
+  <h1 class="mb-4">Restaurants</h1>
+  <div class="row">
+    <% @restaurants.each do |restaurant| %>
+      <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+        <div class="card">
+          <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Restaurant Image">
+          <div class="card-body">
+            <h5 class="card-title"><%= restaurant.name %></h5>
+            <p class="card-text"><%= restaurant.address %></p>
+            <p class="card-text"><small class="text-muted">Category: <%= restaurant.category.capitalize %></small></p>
+            <%= link_to 'View Details', restaurant_path(restaurant), class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to 'Add New Restaurant', new_restaurant_path, class: 'btn btn-success' %>
+</div>
